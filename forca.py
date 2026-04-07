@@ -1,5 +1,6 @@
 import random
 import os
+
 # Função de Forca 
 def jogar_forca():
     print("JOGO DA FORCA")
@@ -10,9 +11,12 @@ def jogar_forca():
     
     tema = input("Digite o número do tema (1-3): ")
     
-    if tema == '1': arquivo = 'animais.txt'
-    elif tema == '2': arquivo = 'carros.txt'
-    elif tema == '3': arquivo = 'jogos.txt'
+    if tema == '1': 
+        arquivo = 'animais.txt'
+    elif tema == '2': 
+        arquivo = 'carros.txt'
+    elif tema == '3': 
+        arquivo = 'jogos.txt'
     else:
         print("Tema inválido! Voltando ao menu.")
         return
@@ -22,7 +26,7 @@ def jogar_forca():
         with open(arquivo, 'r', encoding='utf-8') as f:
             palavras = [linha.strip().lower() for linha in f]
     except FileNotFoundError:
-        print(f"Arquivo {arquivo} não encontrado!")
+        print(f"Arquivo {arquivo} não encontrado! Verifique se o arquivo está no diretório.")
         return
 
     palavra_secreta = random.choice(palavras)
@@ -61,20 +65,26 @@ def jogar_adivinhacao():
     numero_secreto = random.randint(1, 100)
     tentativas = 0
     while True:
-        chute = int(input("Digite um número entre 1 e 100: "))
-        tentativas += 1
-        if chute == numero_secreto:
-            print(f"Acertou em {tentativas} tentativas!")
-            break
-        elif chute < numero_secreto:
-            print("Maior...")
-        else:
-            print("Menor...")
+        try:
+            chute = int(input("Digite um número entre 1 e 100: "))
+            if chute < 1 or chute > 100:
+                print("Por favor, digite um número entre 1 e 100.")
+                continue
+            tentativas += 1
+            if chute == numero_secreto:
+                print(f"Acertou em {tentativas} tentativas!")
+                break
+            elif chute < numero_secreto:
+                print("Maior...")
+            else:
+                print("Menor...")
+        except ValueError:
+            print("Entrada inválida! Digite um número.")
 
 # Menu Principal
 def menu_principal():
     while True: # Laço infinito
-        print("\n"MENU DE JOGOS")
+        print("\nMENU DE JOGOS")
         print("1 - Jogar Forca")
         print("2 - Jogar Adivinhação")
         print("0 - Sair")
