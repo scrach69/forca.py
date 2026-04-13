@@ -6,17 +6,17 @@ def jogar_forca():
     print("JOGO DA FORCA")
     print("Escolha o tema:")
     print("1 - Animais")
-    print("2 - Carros")
-    print("3 - Jogos")
+    print("2 - Culinaria")
+    print("3 - Tecnologia")
     
     tema = input("Digite o número do tema (1-3): ")
     
     if tema == '1': 
         arquivo = 'animais.txt'
     elif tema == '2': 
-        arquivo = 'carros.txt'
+        arquivo = 'culinaria.txt'
     elif tema == '3': 
-        arquivo = 'jogos.txt'
+        arquivo = 'tecnologia.txt'
     else:
         print("Tema inválido! Voltando ao menu.")
         return
